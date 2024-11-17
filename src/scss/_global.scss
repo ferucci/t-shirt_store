@@ -1,0 +1,77 @@
+@use 'vars' as vars;
+@use 'mixins/' as mixin;
+@use 'mixins/media' as media;
+
+body {
+  @include mixin.font(700);
+  @include mixin.setStyleText();
+  background-color: vars.$bg-color;
+
+  min-height: 100vh;
+
+  scrollbar-width: none;
+  scrollbar-color: vars.$main-color transparent;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: vars.$main-color;
+  border-radius: .5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.disable-scroll {
+  --transition-time: .3s;
+  position: fixed;
+  overflow: hidden;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.container {
+  max-width: vars.$max-width-container;
+  margin: 0 auto;
+  padding: vars.$padding-container vars.$padding-container 0;
+
+  @include media.md {
+    padding: calc(vars.$padding-container / 2) calc(vars.$padding-container / 2) 0;
+  }
+
+}
+
+section {
+  padding-bottom: vars.$padding-section;
+}
+
+.title {
+  @include mixin.font(700);
+  @include mixin.setStyleText($sfs: 1.88rem, $size: 3vw, $lh: 130%, $fs: 3rem)
+}
+
+.button {
+  @include mixin.button();
+  @include mixin.font(700);
+  @include mixin.setStyleText($sfs: .77rem, $color: vars.$white, $fs: .88rem, $lh: 140%);
+  text-transform: uppercase;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    width: 1.25rem;
+    height: 0.75rem;
+    transform: translateY(-50%);
+    background-image: url(../images/icons/arrow-rigth.svg) no-repeat;
+  }
+}

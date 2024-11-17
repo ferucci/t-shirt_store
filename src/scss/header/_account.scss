@@ -1,0 +1,30 @@
+@use '../mixins' as mixin;
+@use '../mixins/media' as media;
+
+.account {
+  flex: 1 0 auto;
+
+  @include media.md {
+    display: none
+  }
+
+  &__link {
+
+    @include mixin.df();
+
+    &>div {
+      width: fit-content;
+    }
+  }
+
+  &__sum {
+    @include mixin.font(400);
+    padding-left: .4rem;
+    white-space: nowrap
+  }
+
+  &__email {
+    @include mixin.prohTextWrapp();
+    flex: 0 0 max(7rem, 62%);
+  }
+}

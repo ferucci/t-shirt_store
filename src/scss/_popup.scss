@@ -1,0 +1,189 @@
+@use 'vars' as vars;
+@use 'mixins' as mixin;
+@use 'mixins/media.scss' as media;
+
+.popup.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--transition-time), visibility var(--transition-time);
+}
+
+.popup__wrapp.popup-open {
+  display: flex;
+}
+
+.fade {
+  opacity: 0;
+}
+
+.fade.animate-open {
+  opacity: 1;
+  transition: opacity var(--transition-time)
+}
+
+.fadeInUp {
+  opacity: 0;
+  transform: translateY(-100px);
+  transition: opacity var(--transition-time), transform var(--transition-time)
+}
+
+.fadeInUp.animate-open {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: opacity var(--transition-time), transform var(--transition-time)
+}
+
+.popup {
+  $main-padding: 1.22rem;
+
+  background-color: rgba(0, 0, 0, 0.75);
+  letter-spacing: 0;
+
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 4;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-time), visibility var(--transition-time);
+  cursor: pointer;
+  transition: .3s;
+
+  // &::before {
+  //   content: '';
+  //   display: inline-block;
+  //   vertical-align: middle;
+  //   height: 100%;
+  // }
+
+  &__wrapp {
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    gap: 60px;
+    margin: 0 auto;
+    background: vars.$white;
+    padding: $main-padding;
+    border-radius: 1.22rem;
+    max-width: 45rem;
+    position: relative;
+    cursor: default;
+
+    @include media.sm {
+      height: 100%;
+    }
+  }
+
+  &__content {
+    padding-top: calc($main-padding + 2rem);
+  }
+
+  &__title {
+    display: inline-block;
+    font-size: 1.33rem;
+    margin-bottom: 1.22rem;
+  }
+
+  &__close {
+    position: absolute;
+    right: $main-padding;
+    top: $main-padding;
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  &__close-item {
+    @include mixin.df();
+    position: relative;
+    font-size: 1rem;
+    line-height: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    border-radius: .5rem;
+    cursor: pointer;
+    color: vars.$white;
+    border: 0;
+  }
+
+  &__items {
+    margin-bottom: 1.22rem;
+  }
+
+  &__form-item+.popup__form-item {
+    margin: .66rem 0 0 0;
+  }
+
+  &__form-item {
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  &__field {
+    display: block;
+    width: 100%;
+    padding: 1rem 1.22rem;
+    border-radius: .66rem;
+    font-size: 1rem;
+    background-color: vars.$grey-5;
+    border: 0;
+    color: vars.$main-color;
+
+    &::placeholder {
+      color: vars.$main-color;
+    }
+
+    &--message {
+      resize: none;
+    }
+  }
+
+  &__form-footer {
+    @include mixin.df($posX: start);
+    gap: .66rem;
+
+    @include media.sm {
+      flex-direction: column;
+
+      &>button {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      &>button::before {
+        display: none;
+      }
+    }
+
+  }
+
+  &__agree {
+    display: inline-block;
+    @include mixin.font(400);
+    font-size: .88rem;
+    line-height: 140%;
+    color: vars.$grey-1;
+    max-width: 22rem;
+  }
+
+  &__error {
+    color: vars.$accent-color;
+    @include mixin.font(400);
+    margin-top: .25rem;
+    padding-left: 1.22rem;
+    text-align: left;
+  }
+
+  button {
+    &:disabled {
+      opacity: 0.3;
+    }
+  }
+}

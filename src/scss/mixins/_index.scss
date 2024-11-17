@@ -1,0 +1,50 @@
+@use './vars' as vars;
+
+@mixin df($posX: center, $posY: center, $fd: initial) {
+  display: flex;
+  flex-direction: $fd;
+  align-items: $posY;
+  justify-content: $posX;
+}
+
+@mixin setStyleText($sfs: vars.$min-base-fs,
+  $color: vars.$main-color,
+  $size: vars.$middle-size-for-clamp,
+  $lh: 130%, $fs: vars.$max-base-fs) {
+
+  font-size: clamp($sfs, $size, $fs);
+  line-height: $lh;
+  color: $color;
+}
+
+@mixin prohTextWrapp() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin elipsisMultiStroke($strNum: 1, $display: -webkit-box) {
+  display: $display;
+  -webkit-line-clamp: $strNum;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin font($fw: 400) {
+  font-family: "Manrope", sans-serif;
+  font-weight: $fw;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+@mixin button($p: .8rem 3rem .8rem 1rem) {
+  display: inline-block;
+  padding: $p;
+  margin: 0;
+  background: vars.$main-color;
+  color: vars.$white;
+
+  border-radius: .66rem;
+  border: none;
+  cursor: pointer;
+}

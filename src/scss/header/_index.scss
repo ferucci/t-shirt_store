@@ -1,0 +1,207 @@
+@use '../mixins' as mixin;
+@use '../mixins/media' as media;
+@use '../vars' as vars;
+
+@use './account';
+@use './dropdown';
+
+.header {
+  color: vars.$white;
+
+  &__wrapp {
+    position: relative;
+  }
+
+  &__top {
+    position: absolute;
+    width: 100%;
+    font-size: .88rem;
+    padding: vars.$padding-container;
+
+    @include media.md {
+      padding: calc(vars.$padding-container / 2);
+    }
+  }
+
+  &__slider {
+
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+
+
+    border-radius: 1.22rem;
+
+    & picture {
+      display: block;
+    }
+
+    & img {
+      width: 100%;
+      object-fit: cover;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 1.22rem;
+    }
+  }
+
+  &__logo {
+    width: clamp(3.12rem, 12vw, 5rem);
+  }
+
+  &__phone {
+    flex-grow: 5;
+    text-align: center;
+    @include mixin.prohTextWrapp();
+  }
+
+  &__top,
+  &__nav,
+  .nav__list {
+    @include mixin.df(space-between, center);
+    gap: clamp(.66rem, 1vw, 1.88rem);
+    flex-wrap: nowrap;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .nav__list:has([data-dropdown]) {
+    @include media.lg {
+      flex-direction: column;
+    }
+  }
+
+  &__menu {
+    flex-grow: 5;
+
+    @include media.lg {
+      position: absolute;
+      top: calc(0rem - vars.$padding-container);
+      left: calc(0rem - vars.$padding-container);
+
+      @include media.md {
+        top: calc(0rem - vars.$padding-container / 2);
+        left: calc(0rem - vars.$padding-container / 2);
+      }
+
+      transition: transform .4s ease-in;
+
+      min-height: 100vh;
+      max-height: 100vh;
+      height: fit-content;
+      overflow-y: auto;
+      color: vars.$main-color;
+      background: vars.$white;
+      min-width: 20rem;
+      padding: vars.$padding-container;
+      transform: translateX(-100%);
+    }
+  }
+
+  &__btn-menu {
+    position: relative;
+    z-index: 2;
+    display: none;
+    background-color: transparent;
+
+    border: none;
+    line-height: 0;
+    cursor: pointer;
+
+    @include media.lg {
+      display: block;
+      padding: 0 0 0 1.5rem;
+    }
+
+    span {
+      background-color: vars.$white;
+      width: 1rem;
+      height: 2px;
+      border-radius: 1rem;
+      display: block;
+      margin: 4px 0;
+    }
+  }
+
+  .nav {
+
+    .nav__list {
+      @include media.lg {
+        padding-top: 2.5rem;
+        row-gap: 1.88rem;
+        align-items: start;
+        text-align: start;
+        margin: 0 0 0 0;
+        width: 100%;
+      }
+    }
+
+    .nav__item[data-dropdown] {
+      width: 100%;
+      position: relative;
+
+      &>a {
+        transition: transform 0.3s ease-in-out;
+
+        &::before {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 15px;
+          height: 15px;
+          background-image: url(../../images/icons/dropdown.svg) no-repeat;
+        }
+      }
+
+      &>a.active::before {
+        transform: rotate(180deg) translate(25%, 50%);
+      }
+
+    }
+
+    &__profile {
+      & .nav__link {
+        position: relative;
+
+        @include media.md {
+          max-width: 1rem;
+        }
+      }
+
+      @include media.sm {
+        display: none;
+      }
+    }
+
+    &__output {
+      @include mixin.df();
+      position: absolute;
+      font: inherit;
+      font-size: .6rem;
+      color: inherit;
+
+      max-width: .77rem;
+      max-height: .77rem;
+      right: -0.3rem;
+      bottom: -0.3rem;
+      padding: .33rem;
+      background-color: vars.$accent-color;
+      border-radius: 50%;
+    }
+
+    &__link {
+      display: block;
+      width: 100%;
+
+      &.active {
+        color: vars.$grey-2;
+      }
+
+    }
+  }
+
+  .active-menu {
+    transform: translateX(0%);
+  }
+}

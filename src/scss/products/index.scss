@@ -1,0 +1,98 @@
+@use '../vars' as vars;
+@use '../mixins' as mixin;
+
+$width: 20rem;
+
+.products {
+  &__top {
+    @include mixin.df($posX: space-between);
+    margin-bottom: 1.88rem;
+  }
+
+  &__list {
+    @include mixin.df();
+    gap: 1.22rem;
+
+  }
+
+  &__item {
+    background-color: vars.$white;
+    padding: vars.$padding-container;
+    border-radius: 1.22rem;
+    min-width: $width;
+    max-width: 28rem;
+  }
+}
+
+.product {
+  &__inner {
+    @include mixin.df($fd: column);
+    gap: .64rem;
+    position: relative;
+
+    &::before {
+      content: 'NEW!';
+      position: absolute;
+      font-size: .88rem;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &__likes {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__likes:hover {
+    cursor: pointer;
+
+    svg path {
+      fill: red;
+    }
+  }
+
+  &__image {
+    max-width: $width;
+  }
+
+  &__name {
+    display: inline-block;
+    color: vars.$grey-1;
+    background-color: vars.$grey-4;
+    border-radius: .25rem;
+    font-size: .66rem;
+    padding: .25rem .5rem;
+    text-transform: uppercase;
+  }
+
+  &__desc {
+    font-size: 1.12rem;
+    text-align: center;
+    margin-bottom: .77rem;
+    @include mixin.elipsisMultiStroke($strNum: 2, $display: -webkit-box)
+  }
+
+  &__price {
+    @include mixin.font();
+    font-size: 1.22rem;
+  }
+
+  &__price-box {
+    display: flex;
+    gap: 0.6rem;
+
+    &>span {
+      display: inline-block;
+    }
+  }
+
+  &__price-old {
+    text-decoration: line-through;
+    @include mixin.font();
+    font-size: 1rem;
+    color: vars.$grey-2;
+
+  }
+}

@@ -1,0 +1,79 @@
+@use '../vars' as vars;
+@use '../mixins' as mixin;
+@use '../mixins/media' as media;
+
+.dropdown {
+  &__list {
+    @include mixin.font();
+    transition: all .3s ease;
+    font-size: vars.$min-base-fs;
+    letter-spacing: -.02rem;
+    padding: .5rem 0 .7rem;
+
+    width: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+
+  }
+
+  &__list.show {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    width: calc(100vw / 2);
+    max-width: calc(vars.$max-width-container / 2);
+    max-height: fit-content;
+    gap: .7rem;
+    margin-top: 1.22rem;
+    opacity: 1;
+    width: fit-content;
+    background: vars.$white;
+    border-radius: 1.22rem;
+    padding: clamp(1rem, 2vw, 2rem);
+    position: absolute;
+    white-space: nowrap;
+
+    @include media.lg {
+      position: static;
+      gap: 1.22rem;
+      padding: .77rem 0 0 0;
+      min-width: fit-content;
+      max-width: 10rem;
+      grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+    }
+
+  }
+
+  &__item {
+    color: vars.$main-color;
+    width: auto;
+    transition: .3s all ease;
+    text-align: start;
+    @include mixin.prohTextWrapp();
+  }
+
+}
+
+.dropdown__list.show {
+  overflow: inherit;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1.22rem;
+    left: 1.8rem;
+    width: 1.22rem;
+    height: 2.2rem;
+    border-bottom: 1.8rem solid #fff;
+    border-right: 1.22rem solid transparent;
+    border-left: 1.22rem solid transparent;
+    transform: translateX(-50%);
+  }
+
+  @include media.lg {
+    &::before {
+      display: none;
+    }
+  }
+}
