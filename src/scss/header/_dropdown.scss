@@ -53,6 +53,10 @@
     @include mixin.prohTextWrapp();
   }
 
+  &__link {
+    text-transform: uppercase;
+  }
+
 }
 
 .dropdown__list.show {

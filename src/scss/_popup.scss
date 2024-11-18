@@ -34,7 +34,7 @@
 }
 
 .popup {
-  $main-padding: 1.22rem;
+
 
   background-color: rgba(0, 0, 0, 0.75);
   letter-spacing: 0;
@@ -48,7 +48,7 @@
   left: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  z-index: 4;
+  z-index: 5;
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--transition-time), visibility var(--transition-time);
@@ -69,7 +69,7 @@
     gap: 60px;
     margin: 0 auto;
     background: vars.$white;
-    padding: $main-padding;
+    padding: vars.$padding-container;
     border-radius: 1.22rem;
     max-width: 45rem;
     position: relative;
@@ -81,35 +81,13 @@
   }
 
   &__content {
-    padding-top: calc($main-padding + 2rem);
+    padding-top: calc(vars.$padding-container + 2rem);
   }
 
   &__title {
     display: inline-block;
     font-size: 1.33rem;
     margin-bottom: 1.22rem;
-  }
-
-  &__close {
-    position: absolute;
-    right: $main-padding;
-    top: $main-padding;
-    height: 2.5rem;
-    width: 2.5rem;
-  }
-
-  &__close-item {
-    @include mixin.df();
-    position: relative;
-    font-size: 1rem;
-    line-height: 0px;
-    width: 100%;
-    height: 100%;
-    background: #000000;
-    border-radius: .5rem;
-    cursor: pointer;
-    color: vars.$white;
-    border: 0;
   }
 
   &__items {

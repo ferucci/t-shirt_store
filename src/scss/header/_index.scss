@@ -17,18 +17,16 @@
     width: 100%;
     font-size: .88rem;
     padding: vars.$padding-container;
+    z-index: 5;
 
     @include media.md {
       padding: calc(vars.$padding-container / 2);
     }
   }
 
-  &__slider {
-
-    z-index: -1;
+  &__swiper {
     height: 100%;
     width: 100%;
-
 
     border-radius: 1.22rem;
 
@@ -74,6 +72,14 @@
   &__menu {
     flex-grow: 5;
 
+    .btn-close {
+      display: none;
+
+      @include media.lg {
+        display: block;
+      }
+    }
+
     @include media.lg {
       position: absolute;
       top: calc(0rem - vars.$padding-container);
@@ -82,6 +88,7 @@
       @include media.md {
         top: calc(0rem - vars.$padding-container / 2);
         left: calc(0rem - vars.$padding-container / 2);
+        z-index: 10;
       }
 
       transition: transform .4s ease-in;
@@ -125,6 +132,10 @@
 
   .nav {
 
+    @include media.lg {
+      margin: 2.5rem auto 0 auto;
+    }
+
     .nav__list {
       @include media.lg {
         padding-top: 2.5rem;
@@ -140,17 +151,21 @@
       width: 100%;
       position: relative;
 
-      &>a {
-        transition: transform 0.3s ease-in-out;
+      @include media.lg {
+        &>a {
+          transition: transform 0.3s ease-in-out;
 
-        &::before {
-          content: '';
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: 15px;
-          height: 15px;
-          background-image: url(../../images/icons/dropdown.svg) no-repeat;
+          &::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            transform: translateY(50%);
+            width: 15px;
+            height: 15px;
+            background-image: url('../images/icons/dropdown.svg');
+            background-repeat: no-repeat;
+          }
         }
       }
 
@@ -193,6 +208,7 @@
     &__link {
       display: block;
       width: 100%;
+      text-transform: uppercase;
 
       &.active {
         color: vars.$grey-2;

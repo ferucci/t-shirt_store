@@ -1,30 +1,51 @@
 @use '../vars' as vars;
 @use '../mixins' as mixin;
+@use '../mixins/media' as media;
 
-$width: 20rem;
+@use '../swiper.scss';
 
 .products {
-  &__top {
-    @include mixin.df($posX: space-between);
-    margin-bottom: 1.88rem;
+  &__inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__content {
+    grid-column: 1/3;
+    margin-top: clamp(1.22rem, 3vw, 2rem);
+    max-width: 100%;
+
+    @include media.sm {
+      margin-bottom: 1.22rem;
+    }
+  }
+
+  &__views {
+    justify-self: end;
+
+    @include media.sm {
+      grid-row: 3;
+      grid-column: 1/3;
+      justify-self: center;
+    }
   }
 
   &__list {
-    @include mixin.df();
-    gap: 1.22rem;
+    @include mixin.df($posX: space-between);
+    // gap: 1.22rem;
 
   }
 
   &__item {
-    background-color: vars.$white;
-    padding: vars.$padding-container;
-    border-radius: 1.22rem;
-    min-width: $width;
-    max-width: 28rem;
+    max-width: vars.$card-max-width;
+    min-width: vars.$card-width;
   }
 }
 
 .product {
+  @include mixin.cardBase(vars.$white, 17rem);
+  padding: vars.$padding-container;
+
   &__inner {
     @include mixin.df($fd: column);
     gap: .64rem;
@@ -54,7 +75,7 @@ $width: 20rem;
   }
 
   &__image {
-    max-width: $width;
+    max-width: vars.$card-width;
   }
 
   &__name {

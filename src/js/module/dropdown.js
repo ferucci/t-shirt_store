@@ -6,7 +6,6 @@ export class DropdownManager {
 
   init() {
     this.links.forEach(link => link.addEventListener('click', this.handleLinkClick.bind(this)))
-
   }
 
   handleLinkClick(event) {
@@ -19,10 +18,13 @@ export class DropdownManager {
     if (!dropdown) return;
 
     if (!target.closest('.active')) this.checkActiveLinks();
+    this.toggleActiveParams(target, dropdown)
 
+  }
+
+  toggleActiveParams(target, dropdown) {
     target.classList.toggle('active');
     dropdown.classList.toggle('show');
-
   }
 
   checkActiveLinks() {

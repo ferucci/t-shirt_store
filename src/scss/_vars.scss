@@ -3,8 +3,10 @@ $middle-size-for-clamp: 2vw;
 $max-base-fs: 1.25rem;
 
 $max-width-container: 1920px;
+$card-width: 20rem;
+$card-max-width: 28.4rem;
 $padding-container: 1.22rem;
-$padding-section: clamp(4.4rem, 7vw, 6.4rem);
+$padding-section: clamp(3.8rem, 7vw, 6.4rem);
 
 $bg-color: #F1F4F5;
 $accent-bg: #c76188;
@@ -14,7 +16,8 @@ $accent-color: #D81823;
 $secondary-color: #333333;
 $white: #ffffff;
 
-$grey-1: #666666;
+$grey-1: #333333;
 $grey-2: #8C8C8C;
+$grey-3: #C1C1C1;
 $grey-4: #E0E0E0;
 $grey-5: #F4F4F4;

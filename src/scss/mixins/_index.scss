@@ -37,14 +37,50 @@
   font-style: normal;
 }
 
-@mixin button($p: .8rem 3rem .8rem 1rem) {
+@mixin button($p: .8rem 3rem .8rem 1rem, $bg: vars.$main-color) {
   display: inline-block;
   padding: $p;
   margin: 0;
-  background: vars.$main-color;
+  background: $bg;
   color: vars.$white;
 
   border-radius: .66rem;
   border: none;
   cursor: pointer;
+}
+
+@mixin cardBase($bg, $min-width: vars.$card-width) {
+  background-color: $bg;
+  min-width: $min-width;
+  max-width: vars.$card-max-width;
+  border-radius: 1.22rem;
+}
+
+@mixin buttonBefore($imageSrc: '../images/icons/arrow-rigth.svg') {
+  &::before {
+    content: "";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    width: 1.25rem;
+    height: 0.75rem;
+    transform: translateY(-50%);
+    background-image: url($imageSrc) no-repeat;
+  }
+}
+
+@mixin activeBtnBurger() {
+  &.active-btn {
+    &>span:nth-child(1) {
+      transform: rotate(-45deg) translateX(-25%);
+    }
+
+    &>span:nth-child(2) {
+      display: none;
+    }
+
+    &>span:last-child {
+      transform: rotate(45deg) translateX(-25%);
+    }
+  }
 }

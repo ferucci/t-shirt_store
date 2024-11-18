@@ -4,6 +4,12 @@
   }
 }
 
+@mixin mds {
+  @media (max-width: 668px) {
+    @content;
+  }
+}
+
 @mixin md {
   @media (max-width: 768px) {
     @content;
@@ -13,6 +19,12 @@
 
 @mixin lg {
   @media (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin lgd {
+  @media (max-width: 1200px) {
     @content;
   }
 }
