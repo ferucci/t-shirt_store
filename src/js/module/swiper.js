@@ -2,7 +2,7 @@ export const swiperSliders = (...elements) => {
 
   new Swiper(elements[0], {
     loop: true,
-    effect: 'flip',
+    effect: 'fade',
     grabCursor: true,
 
     pagination: {
@@ -43,7 +43,7 @@ export const swiperSliders = (...elements) => {
         slidesPerView: 1,
         spaceBetween: 10
       },
-      420: {
+      475: {
         slidesPerView: 2,
         spaceBetween: 10
       },

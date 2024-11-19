@@ -1,4 +1,3 @@
-// Здесь прописаны все пути до файлов сборки
 const pathSrc = "./src";
 const pathDest = "./public";
 

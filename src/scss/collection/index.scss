@@ -100,13 +100,9 @@
     }
 
     @include media.lg {
+      grid-template-columns: 60% 40%;
       @include descElemGridAdaptive()
     }
-
-    @include media.lg {
-      grid-template-columns: 60% 40%;
-    }
-
 
   }
 
